@@ -1,0 +1,61 @@
+%% Creator: Inkscape 0.48.3.1, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'GOPR2201_ImpCtrlv5_E055_part4_t036_bearb.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{243.7795166bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.58139534)%
+    \put(0,0){\includegraphics[width=\unitlength]{figures/CollDetStick/GOPR2201_ImpCtrlv5_E055_part4_t036_bearb_small.pdf}}%
+    \put(0.11350025,0.1860528){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{4}$}}}%
+    \put(0.11586437,0.01200456){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{6}$}}}%
+    \put(0.83721833,0.12809527){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{3}$}}}%
+    \put(0.22940213,0.51317985){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{1}$}}}%
+    \put(0.74390376,0.37527207){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{2}$}}}%
+    \put(0.30021948,0.09932552){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{5}$}}}%
+    \put(0.81594486,0.02836957){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{7}$}}}%
+  \end{picture}%
+\endgroup%

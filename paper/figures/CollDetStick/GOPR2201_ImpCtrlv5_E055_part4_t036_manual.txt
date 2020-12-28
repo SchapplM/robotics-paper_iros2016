@@ -1,0 +1,12 @@
+# Bild erstellen und bearbeiten
+
+neues Inkscape-Dokument öffnen
+jpg-Bild importieren (nur verknüpfen, nicht einbetten)
+Pfeile etc. einzeichnen
+
+# Bild speichern
+Source: https://pandemoniumillusion.wordpress.com/2008/05/07/compress-a-pdf-with-pdftk/
+    cd ~/IRT_DRC/drc_paper/Atlas_IROS_16/figures/CollDetStick
+    pdf2ps GOPR2201_ImpCtrlv5_E055_part4_t036_bearb.pdf GOPR2201_ImpCtrlv5_E055_part4_t036_bearb_large.ps
+    ps2pdf GOPR2201_ImpCtrlv5_E055_part4_t036_bearb_large.ps GOPR2201_ImpCtrlv5_E055_part4_t036_bearb_small.pdf
+

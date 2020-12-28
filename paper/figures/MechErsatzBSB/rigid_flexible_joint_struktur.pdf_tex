@@ -1,0 +1,70 @@
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'rigid_flexible_joint_struktur.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{226.77165527bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.25)%
+    \put(0,0){\includegraphics[width=\unitlength]{figures/MechErsatzBSB/rigid_flexible_joint_struktur.pdf}}%
+    \put(0.49741666,0.20332806){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}_{\mathrm{f},\theta}$}}}%
+    \put(0.77963888,0.20332806){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}_{\mathrm{f},q}$}}}%
+    \put(0.24341666,0.1283279){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}_{\mathrm{ext}}$}}}%
+    \put(0.24341666,0.03468526){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}$}}}%
+    \put(0.62441666,0.03405136){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\theta}$}}}%
+    \put(0.91722222,0.03468526){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{q}$}}}%
+    \put(0.53975,0.10230128){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{B}$}}}%
+    \put(0.82902777,0.10230128){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{M}$}}}%
+    \put(0.14816667,0.10230128){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{M}$}}}%
+    \put(0.65263888,0.15875003){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{K}_\mathrm{J}$}}}%
+    \put(-0.01058333,0.01763892){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\text{(a)}$}}}%
+    \put(0.35630555,0.01763892){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\text{(b)}$}}}%
+    \put(-0.02469444,0.1283279){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}_{\mathrm{m}}$}}}%
+    \put(0.381,0.1283279){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}_{\mathrm{m}}$}}}%
+    \put(0.92074999,0.1283279){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}_{\mathrm{ext}}$}}}%
+    \put(0.10583333,0.20332806){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\bm{\tau}_{\mathrm{f}}$}}}%
+  \end{picture}%
+\endgroup%

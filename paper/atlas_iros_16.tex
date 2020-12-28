@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
+
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+
+\IEEEoverridecommandlockouts                              % This command is only needed if 
+                                                          % you want to use the \thanks command
+
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
+%\pdfminorversion=4
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{graphicx}
+\usepackage[font=footnotesize]{subcaption}
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{bm}
+\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage[latin1]{inputenc} % for German characters
+\usepackage{fixltx2e}
+\captionsetup{font=footnotesize}
+\usepackage{color}
+\usepackage[countmax]{subfloat}
+%\usepackage{color}
+\usepackage{changes}
+
+% Symbole für Tabelle: grüner Haken und rotes Kreuz
+\newcommand{\ok}{{\color{green}\checkmark}}
+\newcommand{\no}{{\color{red}$\boldsymbol\times$}}
+\newcommand{\SkipBeforeText}{\vspace*{-3ex}} % Platz nach figure und vor Text verringern
+\newcommand{\SkipBeforePicture}{\vspace*{-2ex}} % Platz vor figure verringern
+\newcommand{\BibBaselineStretch}{0.92}
+
+
+\title{\LARGE \bf
+Soft Robotics for the Hydraulic Atlas Arms: Joint Impedance Control with Collision Detection and Disturbance Compensation
+}
+
+\author{Jonathan Vorndamme, Moritz Schappler, Alexander Tödtheide and Sami Haddadin$^{1}$% <-this % stops a space
+\thanks{$^{1}$ All authors are with Institute of Automatic Control (IRT), Leibniz Universität Hannover, Appelstr. 11, 30167 Hannover, Germany. \newline Email: \texttt{<lastname>}@irt.uni-hannover.de. 
+\newline
+This work is part of a project that has received funding from the European Union's Horizon 2020 research and innovation programme under
+grant agreement No 688857 (``SoftPro'').
+\newline
+The authors would like to thank the other members of Team ViGIR for supporting the robot experiments. 
+The robot experiments were supported in by the Defense Advanced Research Projects Agency (DARPA) under Air Force Research Laboratory (AFRL) contract FA8750-12-C-0337.
+}. 
+}
+
+%\renewcommand{\baselinestretch}{1.045}
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\input{sec_abstract_intro}
+
+\input{sec_model}
+
+\input{sec_ident}
+
+\input{sec_colldet}
+
+\input{sec_compliance_obs}
+
+\input{sec_rest}
+
+\end{document}

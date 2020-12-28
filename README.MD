@@ -1,0 +1,68 @@
+# Soft Robotics for the Hydraulic Atlas Arms: Joint Impedance Control with Collision Detection and Disturbance Compensation
+
+Authors:
+Jonathan Vorndamme, Moritz Schappler, Alexander Tödtheide, and Sami Haddadin
+
+This repository provides supplemental material to the following publication at the IEEE ICRA 2017 conference:
+
+```bib
+
+@InProceedings{VorndammeSchToeHad2016,
+  author    = {Jonathan Vorndamme and Moritz Schappler and Alexander Tödtheide and Sami Haddadin},
+  booktitle = {2016 {IEEE}/{RSJ} International Conference on Intelligent Robots and Systems ({IROS})},
+  title     = {Soft Robotics for the Hydraulic {A}tlas Arms: Joint Impedance Control with Collision Detection and Disturbance Compensation},
+  doi       = {10.1109/iros.2016.7759517},
+  year      = {2016},
+}
+```
+
+## Abstract
+
+Soft robotics methods such as impedance control and reflexive collision handling have proven to be a valuable tool to robots acting in partially unknown and potentially unstructured environments. Mainly, the schemes were developed with focus on classical electromechanically driven, torque controlled robots. There, joint friction, mostly coming from high gearing, is typically decoupled from link-side control via suitable rigid or elastic joint torque feedback. Extending and applying these algorithms to stiff hydraulically actuated robots poses problems regarding the strong influence of friction on joint torque estimation from pressure sensing, i.e. link-side friction is typically significantly higher than in electromechanical soft robots. In order to improve the performance of such systems, we apply state-of-the-art fault detection and estimation methods together with observer-based disturbance compensation control to the humanoid robot Atlas. With this it is possible to achieve higher tracking accuracy despite facing significant modeling errors. Compliant end-effector behavior can also be ensured by including an additional force/torque sensor into the generalized momentum-based disturbance observer algorithm from De Luca et al.
+
+## Contents
+
+This repository contains Matlab scripts and Latex code to reproduce the simulative results of the paper.
+
+### Dependencies
+
+The path initialization script `drc_paper_path_init.m` has to be run in Matlab.
+
+The following repositories have to be downloaded and their respective `...path_init.m` has to be run:
+
+* https://github.com/SchapplM/robotics-dep-ext
+* https://github.com/SchapplM/robotics-toolbox
+* https://github.com/SchapplM/matlab_toolbox
+* https://github.com/SchapplM/robotics-dep-geometry
+
+Some Matlab functions have to be compiled using the Mex compiler. This is done with `atlas_collhdl_mex_all.m`. A Mex compiler has to be installed and configured within Matlab.
+
+### Scripts for Simulation of the Controller
+
+The following scripts can be found in the directory `paper/simulations`.
+
+* Fig. 12 is created by `atlas_joint_impctrl_sqrt_damping_test_extforce_comp.m`. This calls the simulink model `simulink/atlas_joint_impctrl_sqrt_damping_test.mdl`, which also contains links to the implementation of the impedance controller.
+* To be able to create Fig. 13 and 14, first run `atlas_joint_impctrl_sqrt_damping_test_extforce_noise.m`. This takes a while.
+* The figures 13 and 14 are then created with `atlas_joint_impctrl_sqrt_damping_test_extforce_noise_plot.m`.
+
+### Scripts for Processing of Measurement Data
+
+The following scripts in the directory `paper/figures` process data recorded during the experiments, which is not part of this repository.
+
+* Fig. 4: `Identification/FrictionCharacteristics_resultfigures_IROS.m`
+* Fig. 5: `Identification/ConstVel_AssemblyFigure_middle_plot.m`
+* Fig. 6: `Identification/atlas5_plot_torque_ident_MPV_left_DRC_IROS.m`
+* Fig. 8: `CollDetCinderblock/ImpCtrl_E057_resultfigures_icra.m`
+* Fig. 10: `CollDetStick/CollDetStick_Format.m`
+* Fig. 11: `ObserverStiff/ObserverFeedthroughStiff_Format.m`
+
+### Implementation of the Impedance Controller
+
+The impedance controller from Equ. 2 and the disturbance observer from Equ. 4-6 is implemented in the simulink library `atlas_impctrl_library.mdl` in the directory `simulink`. The dynamics of the robot are stored in the library `atlas_dynamic_library.mdl`.
+The simulink blocks in the library can be obtained best by opening `atlas_joint_impctrl_sqrt_damping_test.mdl` and then following the library links.
+
+ A more general version of the impedance controller and the test script for Fig. 12 is stored in the [robotics toolbox in the directory examples_tests/impedance_controller](https://github.com/SchapplM/robotics-toolbox/tree/master/examples_tests/impedance_controller). The simulink implementation is generalized within the library [lib_joint_impctrl.mdl in the toolbox directory controllers](https://github.com/SchapplM/robotics-toolbox/tree/master/controllers). This allows an easier implementation for other robots.
+
+### Kinematics and Dynamics Model
+
+The files with kinematics and dynamics functions in `robot_model` are generated by a [dynamics model generation toolbox](https://github.com/SchapplM/robsynth-modelgen/) based on Maple. The input files for creating the required models atlas5arm, atlas4leg and atlas5wbody are stored in the [directory robot_codegen_definitions/examples of the toolbox](https://github.com/SchapplM/robsynth-modelgen/tree/master/robot_codegen_definitions/examples).

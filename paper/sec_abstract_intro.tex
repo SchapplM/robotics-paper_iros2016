@@ -1,0 +1,101 @@
+% !TEX root = atlas_iros_16.tex
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+% motivation
+Soft robotics methods such as im\-pe\-dance control and reflexive collision handling have proven to be a valuable tool to robots acting in partially unknown and potentially unstructured environments. 
+Mainly, the schemes were developed with focus on classical electromechanically driven, torque controlled robots. 
+There, joint friction, mostly coming from high gearing, is typically decoupled from link-side control via suitable rigid or elastic joint torque feedback.
+% problem
+Extending and applying these algorithms to stiff hydraulically actuated robots poses problems regarding the strong influence of friction on joint torque estimation from pressure sensing, i.e. link-side friction is typically significantly higher than in electromechanical soft robots.
+% contribution
+In order to improve the performance of such systems, we apply state-of-the-art fault detection and estimation methods together with  observer-based disturbance compensation control to the humanoid robot Atlas. 
+With this it is possible to achieve higher tracking accuracy despite facing significant modeling errors. 
+Compliant end-effector behavior can also be ensured by including an additional force/torque sensor into the generalized momentum-based disturbance observer algorithm from \cite{DeLucaAlbHadHir2006}.
+\end{abstract}
+%
+%\begin{keywords}
+%generalized momentum based disturbance observer, collision detection, Atlas robot, joint impedance controller, observer feedforward, DARPA Robotics Challenge
+%\end{keywords}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\large Introduction and State of the Art}
+\label{sec:intro}
+%%-- "General context"
+% TODO: Zitate für diesen Absatz benötigt?
+% Compliant manipulation und Reflexe als Mittel zur Erreichung eines sicheren Verhaltens
+Compliant manipulation and appropriate reflex reactions to collisions have been an active research field over the last decades, opening the door to safer and more autonomous robot applications \cite{Haddadin2014,BicchiTon2004,DeLucaFla2012a}.
+Human-friendly robot behavior has to be ensured not only for industrial robotic co-workers, which are typically serial chain manipulators, but also in future healthcare, rescue or even personal robotics applications, where mobility is essential. 
+At the same time, compliance control and reflexive contact handling are sought to be essential features in damage protection for systems as the Boston Dynamics Atlas hydraulic robot \cite{2014:JFR-ViGIR-DRC-Trials,ConnerKohRomStu2015}.
+
+% Möglichkeiten zur Umsetzung der Nachgiebigkeit: Inhärent oder aktiv geregelt.
+Essentially, softness is either achieved by an inherently compliant structure \cite{PrattWil1995,BicchiTon2002} and/or active compliance control via high-fidelity joint torque feedback. 
+% Impedanzregelung als eine Möglichkeit, nachgiebiges Verhalten zu erreichen
+One of the most prominent control concepts to implement compliance is impedance control.
+It was introduced in \cite{Hogan1985} and extended to flexible joint robots e.g. in \cite{Albu-SchaefferOttHir2007,Ott2008}. 
+% Bezug Elektromechanische Roboter
+However, up to now the schemes were mainly applied to electromechanically driven robots.
+% Bezug Hydraulische Roboter und andere Regelungsmethoden als Impedanzregelung (Beispiele nur für Ganzkörper- oder Ganzarmkonzepte. Keine einzelnen Gelenke, das ist mehr Fokus des Humanoids-Beitrages)
+For hydraulic humanoid robots, basic compliance control schemes were implemented on the SARCOS humanoid, focussing on balancing and contact Jacobians \cite{Hyon2007SARCOScompliance}, on constraint handling via quadratic programming \cite{HerzogRigGriPas2014} or with LQR feedback gain optimization \cite{MasonRigSch2014}. 
+The concept of admittance control (position-based impedance control) has been implemented on the Atlas robot in \cite{Lee2014atlasadmittance}.
+% TODO: Vorteil des Impedanzreglers gegen diese Konzepte.
+% Impedance Control can be seen as a generalized low-level concept to ensure compliance and can be combined with other high-level concepts.
+
+%% Sicheres Verhalten auch durch Reflexe (zusätzlich zur Regelung)
+% Voraussetzungen für Reflexverhalten
+Activating reflex reactions as a response to potentially unwanted environmental contacts is another main pillar in safe and sensitive robot interaction.
+This requires the ability to discriminate internal from external torques based on accurate dynamics models together with proprioceptive position and torque measurements.
+% Möglichkeit zur Umsetzung: Beobachter
+Disturbance observers are a common technique in robotics to handle either modeling inaccuracies \cite{Oh1999,NikoobinHag2008} or to recognize unexpected events such as collisions.
+% Beispiele zur Anwendung
+\cite{LucaMat2005} used a momentum-based disturbance observer for \textbf{collision detection}, \textbf{isolation}, and \textbf{estimation}, including validation with a 2-Degree-of-Freedom (DoF) simulation.
+These results were extended to the flexible manipulator case and experimentally validated with the DLR lightweight robot arm III~\cite{DeLucaAlbHadHir2006}, using the concepts of \emph{total link energy} and \emph{generalized momentum}.
+An analysis of different terms in the error dynamics and an approach for velocity-based variable collision thresholds were presented in \cite{SotoudehnejadKer2014}.
+An estimation of the external end-effector wrenches based on observed disturbance torques was used in \cite{OttHenLee2013} to enhance a model predictive balancing controller on the humanoid robot TORO.
+
+% Erweiterungen zu Kollisionserkennung: Einordnung der Kollisionen
+In \cite{GolzOseHad2015} the subsequent \textbf{collision classification} problem was approached by applying state-of-the-art machine learning techniques to learning the collision torque profiles of different collision types, including features based on collision frequencies, amplitudes or other physically motivated aspects.
+A summary of collision handling can be found in \cite{Haddadin2014}.
+The focus of these works was on electromechanically actuated robots equipped with link-side joint torque sensing.
+
+% Anwendungsbeispiel Hydraulische Roboter
+A collision detection for the 6-DoF hydraulic robot arm \emph{Maestro} with low-pass filtered model error was evaluated in \cite{BidardLibArhMea2005}, focussing on hydraulic friction effects.
+In \cite{jung2012collision} the authors applied a disturbance observer for collision detection that contains a bandpass filter, making use of specifically identified collision frequencies, to a 3-DoF hydraulic robot arm with joint torque sensors. 
+
+% Unterschiede elektromechanisch, hydraulisch, Herausforderungen
+In contrast to their electromechanical counterpart, and due to the fact that no high gearing with according friction losses is required, commonly used hydraulic actuators do not have link-side torque measurements. 
+In fact, actuator forces can be estimated via the chamber pressures. 
+However, link-side friction, e.g. induced by the chamber seals, can be rather high indeed.
+This in turn makes direct high-fidelity joint torque control, and thus also any other soft-robotics control concept, difficult to realize.
+
+%% Unser Beitrag
+% Identifikation, Überleitung von Herausforderungen bei Hydraulik zu unserem Ansatz (getrennte Identifikation)
+In the present work, we approach this problem by identifying friction and the required dynamic parameters for our model-based control concept with a two-step method.
+In the first step, a friction model including Coulomb and viscous friction is identified.
+In the second step, the results of the first step are used to reduce the number of parameters for the identification of the dynamics model.
+
+% Störgrößenbeobachter zur Modellfehlerkompensation: Vorteile, Nachteile, Ausgleich der Nachteile
+In order to compensate for model errors when using impedance control, a generalized momentum-based disturbance observer is used \cite{SpVdTh14}. 
+As a drawback compliance is lost, since external forces cannot be systematically discriminated from the disturbance torques and are thus compensated by the observer as well.
+To overcome this problem for end-effector contacts
+we use a wrist force/torque sensor to calculate the external joint torques and exclude them from the disturbance torque calculation.
+% Störgrößenbeobachter zur Schätzung externer Kräfte: Erweiterungen
+Finally, an identified friction model is part of the control scheme to further reduce the observed disturbances.
+
+% Zusammenfassung unseres Beitrages
+The contributions of this paper are
+\begin{enumerate}
+\item the extension of momentum-based collision handling by considering effects such as friction and wrist force/torque measurements, % methodische Erweiterung der Kollisionserkennung
+\item the experimental validation of disturbance observer-enhanced collision detection and reaction schemes to the hydraulic part of the 7-DoF Atlas robot arms,
+\item simulative results of a disturbance observer compensation concept based on wrist force/torque measurement increasing the impedance controller precision and keeping the end-effector compliance simultaneously, and
+\item a two-step friction and extended rigid body dynamics identification method applied to a serial chain robot with both hydraulic and electromechanic actuators.
+\end{enumerate}
+% Aufbau des Artikels
+The paper is organized as follows.
+Section~\ref{sec:advance} adapts our identification and control concepts from \cite{SpVdTh14} and compares the results to the previous approach.
+Section~\ref{sec:CollDet} shows experimental results for collision detection and reaction with the Atlas robot.
+Furthermore, the concept of regaining compliance when using disturbance compensation from \cite{Oh1999} for our controller implementation is explained.
+Section~\ref{sec:conclusion} concludes the paper.
+
